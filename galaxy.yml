@@ -1,0 +1,15 @@
+namespace: "arboulahdour"
+name: "deb"
+version: "1.0.21"
+readme: "README.md"
+authors:
+    - "Abderrahmane Boulahdour (https://github.com/Arboulahdour)"
+dependencies: {}
+license:
+    - "GPL-2.0-only"
+tags:
+    - linux
+    - packages
+    - ubuntu
+    - systems
+repository: "https://www.github.com/Arboulahdour/deb_collection"

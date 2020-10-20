@@ -1,0 +1,56 @@
+---
+# tasks file for cust_roles
+
+  - name: Installing nginx package
+    arboulahdour.deb.cust_package:
+      update: True
+      upgrade: False
+      repository: "{{ package_repo }}"
+      package: "{{ package_name }}"
+      action: "install"
+    register: output1
+    notify:
+      - displaying installation output
+
+  - name: Starting nginx 
+    arboulahdour.deb.cust_service:  
+      service: "{{ package_name }}" 
+      state: "started"
+    register: output2
+    notify:
+      - starting nginx output
+
+  - name: Creating group named guest_grp with gid 2000
+    arboulahdour.deb.cust_group:
+      name: "{{ grp_name }}"
+      gid: "{{ grp_id }}" 
+      state: "present"
+    register: output3
+    notify:
+      - displaying group output
+
+  - name: Creating users
+    arboulahdour.deb.cust_user:
+      name: "{{ item.user }}"
+      uid: "{{ item.user_id }}"
+      group: "guest_grp"
+      password: "{{ item.password }}"
+      shell: "/bin/bash"
+      groups: "guest_grp"
+      create_dir: True
+      comment: "user is created"
+      state: "present"
+    with_items:
+      - { user: "user1", user_id: 1200, password: "$1$user1$./1GL88mvkhpGsr2aYOpW1" }
+      - { user: "user2", user_id: 1300, password: "$1$user2$er28ORyLkGGsr9OSh6W1df" }
+    register: output4
+    notify:
+      - displaying users output
+
+  - name: Removing user named user1 
+    arboulahdour.deb.cust_user:  
+      name: "user1" 
+      state: "absent"
+    register: output5
+    notify:
+      - displaying deletion output

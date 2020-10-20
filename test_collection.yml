@@ -1,0 +1,24 @@
+---
+- name: Testing Custom Ansible Modules
+  hosts: localhost
+  gather_facts: false
+  connection: local
+  #remote_user: netadmin
+  #become: yes
+  #become_method: sudo
+
+  tasks:
+
+   - name: "creating user named user1" 
+     arboulahdour.deb.cust_user:
+       name: "{{ item }}"
+       uid: 2000
+       group: "root"
+       password: "$1$user1$./1GL88mvkhpGsr2aYOpW1"
+       groups: "root"
+       shell: "/bin/bash"
+       create_dir: True
+       comment: "Hello from user1!"
+       state: "absent"
+     with_items:
+       - user1

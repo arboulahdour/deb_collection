@@ -1,0 +1,21 @@
+---
+# handlers file for cust_roles
+
+  - name: displaying installation output 
+    debug:  var=output1
+
+  - name: starting nginx output 
+    debug:  var=output2
+
+  - name: displaying group output
+    debug:  var=output3
+
+  - name: displaying users output 
+    debug:  var=output4
+
+  - name: displaying deletion output 
+    debug:  var=output5
+
+
+
+  

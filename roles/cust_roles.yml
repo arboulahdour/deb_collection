@@ -1,0 +1,11 @@
+---
+- name: Testing Custom Ansible Role
+  hosts: ubuntuD
+  gather_facts: false
+  #connection: local
+  remote_user: netadmin
+  become: yes
+  become_method: sudo
+
+  roles:
+   - cust_roles

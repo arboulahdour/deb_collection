@@ -1,0 +1,8 @@
+---
+# vars file for cust_roles
+
+package_name: "nginx"
+package_repo: "ppa:nginx/stable"
+
+grp_name: "guest_grp"
+grp_id: 2000
